@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+public class MainActivity {
+	
+	/*
+	 * @ 2019-03-20
+	 * @ 입력한 거 거꾸로 출력하기
+	 * @ - 부호일 때, - 놔두고 출력
+	 * @ 0이 앞으로 올 때, 공백으로 출력
+	 * @ 32 비트 정수 내에서만 가능, Overflow시 0 return.
+	 */
+	
+	static int count = 0;
+	
+	public static String reverseInt(String input) {
+		// 아무 조건이 없는 정수를 입력했을 때, 거꾸로 출력
+		String inputString;
+		char temp;
+		String resultString = "";
+		
+		++count;
+		
+		inputString = input;
+
+		if(count > 1) {
+			return inputString;
+		}
+		else {
+			for(int i=inputString.length()-1; i>=0; i--) {
+				temp = inputString.charAt(i);
+				resultString += temp;
+			}
+			return resultString;
+		}
+		
+	}
+	
+	public static String startZero(int input) {
+		// 거꾸로 한 값이 0으로 시작할 때
+		String inputString = "";
+		String lastValue;
+
+		inputString = Integer.toString(input);
+		if(inputString.charAt(inputString.length()-1) == '0') {
+			inputString.replace("0", " ");
+			
+			return reverseInt(inputString);
+		}
+		return reverseInt(inputString);
+	}
+	
+	public static String signedInteger(int input) {
+		// 부호 붙은 정수 판독
+		String inputString = "";
+		String returnString = "";
+		char temp;
+		String result;
+		
+		if(input < 0) {
+			// 음수일 때 String 형으로 바꾸기
+			inputString = Integer.toString(input);
+			if(inputString.charAt(0) == '-') {
+				++count;
+				for(int i=inputString.length()-1; i>0; i--) {
+					temp = inputString.charAt(i);
+					returnString = returnString + temp;
+				}
+				result = "-" + returnString;
+				
+				return result;
+			}
+		}
+		inputString = Integer.toString(input);
+		return reverseInt(inputString);
+	}
+	
+	public static int overflowInterface(int input) {
+		// overflow 판독
+		if(input > Integer.MAX_VALUE || input < Integer.MIN_VALUE) {
+			return 0;
+		}
+		return 1;
+	}
+	
+	public static void main(String[] args) {
+		int input;
+		int resultInteger;
+		String result = "";
+		
+		System.out.println("Insert 32bit integer...");
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextInt();
+		
+		if(overflowInterface(input) == 0) {
+			System.out.println("program END.");
+		}
+		
+		else { 
+			result = signedInteger(input);
+			resultInteger = Integer.parseInt(result);
+			result = startZero(resultInteger);
+		}
+		
+		System.out.println("Input : " + input);
+		System.out.println("Output : " + result);
+	}
+	
+}
