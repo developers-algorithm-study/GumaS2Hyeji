@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Solution {
+	
+	public double myPow(double x, int n) {
+		double temp = 1;
+		
+		if(n<0) {
+			x = temp / x;
+			n = n*-1;
+			//System.out.println(x);
+		}
+		
+		for(int i=1; i<=n; i++) {
+			if(n==0) {
+				return x;
+			}
+			
+			temp = temp * x;
+			
+		}
+		return temp;
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		double x;
+		int n;
+		double result;
+		
+		System.out.print("Insert x : ");
+		x = sc.nextDouble();
+		System.out.print("Insert n : ");
+		n = sc.nextInt();
+		
+		Solution sl = new Solution();
+		
+		result = sl.myPow(x, n);
+		
+		System.out.println("Result : " + result);
+		
+	}
+
+}
