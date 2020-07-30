@@ -1,6 +1,6 @@
 int main() {
     
-    double a, r, n, result;      /* start, ratio, number, result */
+    double a, r, n;      /* start, ratio, number, result */
     int i;
     
     scanf("%lf %lf %lf", &a, &r, &n);
